@@ -1,0 +1,70 @@
+CREATE TABLE Users (
+    ID int PRIMARY KEY AUTO_INCREMENT,
+    Name varchar(128) NOT NULL,
+    Email varchar(64) UNIQUE NOT NULL,
+    Username varchar(64) UNIQUE NOT NULL,
+    Password varchar(64) NOT NULL,
+    Number varchar(64) UNIQUE NOT NULL,
+    Address varchar(64),
+    Role varchar(64) DEFAULT 'student' NOT NULL
+);
+
+
+CREATE TABLE Books (
+    BookID int NOT NULL AUTO_INCREMENT,
+    BookName varchar(128) NOT NULL,
+    AuthorName varchar(128) NOT NULL,
+    Price float NOT NULL,
+    Category varchar(64) NOT NULL,
+    BookImage varchar(64) DEFAULT 'blank.png' UNIQUE,
+    ID int NOT NULL,
+    PRIMARY KEY (BookID),
+    FOREIGN KEY (ID) REFERENCES Users(ID)
+);
+
+CREATE TABLE Reviews (
+    ReviewID int NOT NULL AUTO_INCREMENT,
+    Review varchar(256) NOT NULL,
+    BookID int NOT NULL,
+    ID int NOT NULL,
+    PRIMARY KEY (ReviewID),
+    FOREIGN KEY (BookID) REFERENCES Books(BookID),
+    FOREIGN KEY (ID) REFERENCES Users(ID)
+);
+
+CREATE TABLE Videos (
+    VideoID int NOT NULL AUTO_INCREMENT,
+    VideoURL varchar(256) NOT NULL,
+    VideoTitle varchar(256) NOT NULL,
+    ID int NOT NULL,
+    SubjectID int NOT NULL,
+    ChapterID int NOT NULL,
+    ClassID int NOT NULL,
+    PRIMARY KEY (VideoID),
+    FOREIGN KEY (ID) REFERENCES Users(ID),
+    FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID),
+    FOREIGN KEY (ChapterID) REFERENCES Chapters(ChapterID),
+    FOREIGN KEY (ClassID) REFERENCES Classes(ClassID)
+);
+
+CREATE TABLE Subjects (
+    SubjectID int NOT NULL AUTO_INCREMENT,
+    SubjectName varchar(256) NOT NULL,
+    PRIMARY KEY (SubjectID)
+);
+
+CREATE TABLE Classes (
+    ClassID int NOT NULL AUTO_INCREMENT,
+    ClassName varchar(256) NOT NULL,
+    PRIMARY KEY (ClassID)
+);
+
+CREATE TABLE Chapters (
+    ChapterID int NOT NULL AUTO_INCREMENT,
+    ChapterName varchar(256) NOT NULL,
+    SubjectID int NOT NULL,
+    ClassID int NOT NULL,
+    PRIMARY KEY (ChapterID),
+    FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID),
+    FOREIGN KEY (ClassID) REFERENCES Classes(ClassID)
+);
