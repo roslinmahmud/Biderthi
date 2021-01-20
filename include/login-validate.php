@@ -1,10 +1,11 @@
 
 <?php
+
     // Import login() function
-    require("../controllers/login-control.php");
+    require("controllers/login-control.php");
 
     if(isset($_SESSION['username'])){
-        header("Location: /BoiPoka/");
+        header("Location: /");
     }
 
     $authenticationError = "";
@@ -61,7 +62,7 @@
             $_SESSION['name'] = $row['Name'];
             $_SESSION['username'] = $username;
             $_SESSION['role'] = $row['Role'];
-            header("Location: /BoiPoka/");
+            header("Location: /");
         }
         else{
             $authenticationError = '<div class="alert alert-danger" role="alert">Invalid username/password </div>';

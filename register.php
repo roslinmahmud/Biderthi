@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
-  <title>Profile - BoiPoka | Book Sharing Platform</title>
+  <title>Register - BoiPoka | Book Sharing Platform</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link rel="manifest" href="site.webmanifest">
@@ -12,40 +13,20 @@
   <link rel="icon" href="favicon.ico" type="image/png" sizes="16x16">
 </head>
 
-
 <body>
   <!-- Loads the Header -->
-  <?php include '../include/header.php'?>
+  <?php include 'include/header.php'?>
+  
   <!-- Loads the register-validate -->
-  <?php include '../include/profile-validate.php'?>
-  <!-- Loads the get_profile_info,  -->
-  <?php require("../controllers/profile-control.php")?>
-  
+  <?php include 'include/register-validate.php'?>
 
-<?php
-    // Get profile info
-    $result = get_profile_info($_SESSION['username']);
-    
-    // Set profile info
-    while($data = $result->fetch_assoc()){
-      $full_name=$data['Name'];
-      $username=$data['Username'];
-      $email=$data['Email'];
-      $number=$data['Number'];
-      $address=$data['Address'];
-      $password=$data['Password'];
-      $cpassword=$password;
-    }
-?>
-
-  
-  <div class="container border border-light" style="width: 500px;margin-top: 10px;">
+  <div class="container border border-light" style="width: 500px; margin-top: 10px;">
     <form method="POST">
-      <h3>Profile</h3>
+      <h3>Register</h3>
       <hr>
       <div class="form-group">
         <label for="name">Full Name</label>
-        <input value="<?php print $full_name ?>" type="text" class="form-control text-capitalize <?php print $nameValidity;?>" value="<?php print $name?>" name="name" id="name" placeholder="Full Name" aria-describedby="nameText" required>
+        <input type="text" class="form-control text-capitalize <?php print $nameValidity;?>" value="<?php print $name?>" name="name" id="name" placeholder="Full Name" aria-describedby="nameText" required>
         <small id="nameText" class="invalid-feedback"><?php print $nameErr;?></small>
       </div>
       <div class="form-group">
@@ -79,14 +60,17 @@
         <small id="cpasswordText" class="form-text text-muted"></small>
       </div>
       <div class="form-group">
-        <button type="submit" name="submit" class="btn btn-primary">Update</button>
+        <button type="submit" name="submit" class="btn btn-primary">Register</button>
       </div>
-      
+      <div class="form-group">
+        <span>Already have an account? <a href="login.php">Login</a></span>
+      </div>
     </form>
   </div>
 
   <!-- Loads the Footer-->
   <?php include '../include/footer.php'?>
+
   <script>
     //Validating Register Password & Confirm-Password
     function validatePassword(){
@@ -105,6 +89,5 @@
     }
   </script>
 </body>
-
 
 </html>

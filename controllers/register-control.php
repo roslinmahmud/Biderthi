@@ -1,6 +1,6 @@
 <?php
     // Import executeNonQuery(), executeQuery() functions
-    require '../models/database-connect.php';
+    require_once 'database-connect.php';
 
     function register($name, $email, $username, $number, $address, $password){
         $query = "INSERT INTO Users (Name, Email, Username, Password, Number, Address)

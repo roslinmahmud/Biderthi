@@ -6,8 +6,11 @@
   <title>Biderthi </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+
   <!-- Bootstrap CSS-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -17,47 +20,58 @@
   <script src="js/app.js"></script>
 </head>
 
-<body>
+<body class='bg-light'>
   <!-- Loads the Header-->
   <?php include 'include/header.php' ?>
 
   <!-- Import getBookData() function -->
-  <?php require 'controllers/index-control.php' ?>
+  <?php 
+    require 'controllers/index-control.php';
 
-  <div class="container" ng-app='app'>
-    <div class="row" ng-controller='MainController'>
-      <div class="col-8">
-        <div ng-view class="container border border-light bg-light" style="margin-top: 10px; padding: 10px;">
-          <div class="form-group">
-            <div ng-if="video" class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" ng-src="{{video}}"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-              </iframe>
-            </div>
-            <h5>{{videoTitle}}</h5>
+    $result = getClasses();
+  ?>
+
+  <div class="container" ng-app='app'  ng-controller='MainController'>
+    <div class="row">
+      <div class="col">
+        
+        <div ng-view class="container" style="margin-top: 10px; padding: 10px;">
+
+          <div class="card">
+            <h5 class="card-header bg-white">
+              Classes
+            </h5>
+            <div class='card-body bg-white'>
+              <div class="card-deck" >
+                <?php
+                  if ($result->num_rows > 0) {
+                    while($data = $result->fetch_assoc()){
+                ?>
+                      <div class="card bg-info" >
+                        <div class="card-body text-center">
+                          <p class="card-text"><?php print($data['ClassName']) ?></p>
+                          <a href="videos.php?classId=<?php print($data['ClassID'])?>" class="stretched-link"></a>
+                        </div>
+                      </div>
+                <?php
+                    }
+                  }
+                ?>
+              </div>
+            </div>   
           </div>
+
         </div>
       </div>
-      <div class="col-4">
-        <div class="container border border-light bg-light" style="margin-top: 10px; padding: 10px;">
-          <nav class="nav flex-column">
-            <a class="nav-link active" href="#subject">Subject</a>
-            <a class="nav-link" href="#class">Class</a>
-            <a class="nav-link" href="#topic">Topics</a>
-            <hr>
-            <ul class="list-group" ng-repeat="video in videos">
-              <li class="list-group-item"><a href="" ng-click="SetVideo(video.VideoId, video.VideoTitle)">{{video.VideoTitle}}</a></li>
-            </ul>
-          </nav>
-        </div>
+      <div class="col-lg-4">
+        <!-- SET a poster here -->
       </div>
     </div>
 
-  </div>
+    <!-- Loads the Footer-->
+    <?php include 'include/footer.php'?>
 
-  <!-- Loads the Footer-->
-  <?php include 'include/footer.php'?>
+  </div>
 </body>
 
 </html>

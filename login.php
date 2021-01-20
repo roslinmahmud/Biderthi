@@ -15,8 +15,10 @@
 
 <body>
   <!-- Loads the Header-->
-  <?php include '../include/header.php'?>
-  <?php include '../include/login-validate.php'?>
+  <?php 
+    include 'include/header.php';
+    include 'include/login-validate.php'
+  ?>
 
   <div class="container" >
     

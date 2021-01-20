@@ -15,10 +15,10 @@
 
 <body>
   <!-- Loads the Header -->
-  <?php include '../include/header.php'?>
+  <?php include 'include/header.php'?>
   
   <!-- Loads the share-validate -->
-  <?php include '../include/share-validate.php'?>
+  <?php include 'include/share-validate.php'?>
 
   <div class="container border border-light" style="width: 600px; margin-top: 10px;">
     <form method="POST" enctype="multipart/form-data">
@@ -83,7 +83,7 @@
   </script>
 
   <!-- Loads the Footer-->
-  <?php include '../include/footer.php'?>
+  <?php include 'include/footer.php'?>
 </body>
 
 </html>

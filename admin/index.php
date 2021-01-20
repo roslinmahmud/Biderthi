@@ -2,7 +2,7 @@
     // Start Seession
     session_start();
     if($_SESSION['role']!='admin'){
-        header("Location: /BoiPoka/");
+        header("Location: /Biderthi/");
     }
 ?>
 
@@ -30,6 +30,7 @@
 
     <body ng-app='admin'>
         <!-- Loads the Header-->
+
 
         <div class="container">
             <div class="row">
