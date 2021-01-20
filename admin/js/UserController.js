@@ -62,7 +62,7 @@
         $scope.Users = function(){
             $scope.getUsers();
         };
-        
+
         $scope.title = "Users Menu";
         $scope.initUpdate = false;
         $scope.Users();

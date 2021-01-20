@@ -1,6 +1,6 @@
 <?php
     // Import executeNonQuery(), executeQuery() functions
-    require_once '../models/database-connect.php';
+    require_once 'database-connect.php';
 
     function getBookData($id){
         $query = "select * from books where BookID=$id";

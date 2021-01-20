@@ -1,5 +1,6 @@
-<?php require("../controllers/profile-update-control.php")?>
 <?php
+    require("controllers/profile-update-control.php");
+
     $name = $email = $username = $number = $address = "";
     $nameErr = $usernameErr = $numberErr = $addressErr= "";
     $nameValidity = $emailValidity = $usernameValidity = $numberValidity = $addressValidity = "";

@@ -2,13 +2,17 @@
     header("Access-Control-Allow-Origin: *");
 
     //Including functions: excuteQuery, executeNonQuery
-    require_once 'models/database-connect.php';
+    require_once 'controllers/database-connect.php';
 
     $postdata = file_get_contents("php://input");
     $request = json_decode($postdata);
 
+    $classId = $request->classId;
+    $subjectId = $request->subjectId;
+    $chapterId = $request->chapterId;
+
     // Retrieve videos
-    $query = "select * from Videos";
+    $query = "select * from Videos where SubjectID='$subjectId' and ClassID='$classId' and ChapterID='$chapterId'";
     $result = executeQuery($query);
 
     $data = "";

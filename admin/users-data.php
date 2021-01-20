@@ -2,7 +2,7 @@
     header("Access-Control-Allow-Origin: *");
     
     //Including functions: excuteQuery, executeNonQuery
-    require_once '../../models/database-connect.php';
+    require_once '../controllers/database-connect.php';
 
     $postdata = file_get_contents("php://input");
     $request = json_decode($postdata);

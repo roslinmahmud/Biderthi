@@ -1,6 +1,6 @@
 <?php
     // Import register() function
-    require("../controllers/register-control.php");
+    require("controllers/register-control.php");
 
     $name = $email = $username = $number = $address = $password = $cpassword = "";
     $nameErr = $usernameErr = $numberErr = $addressErr = $passwordErr = $cpasswordErr = "";
@@ -144,7 +144,7 @@
         if($valid){
             if(register($name, $email, $username, $number, $address, $password)){
                 $_SESSION['username'] = $username;
-                header("Location: /BoiPoka/");
+                header("Location: /");
             }
             else{
                 print '<div class="alert alert-danger" role="alert">Registration failed!</div>';

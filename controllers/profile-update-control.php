@@ -1,7 +1,6 @@
 <?php
     // Import executeNonQuery(), executeQuery() functions
-    require_once '../models/database-connect.php';
-   
+    require_once 'database-connect.php';
 
     function update($id, $name, $email, $username, $number, $address, $password)
     {
