@@ -30,25 +30,23 @@
 
     <body ng-app='admin'>
         <!-- Loads the Header-->
-
-
         <div class="container">
             <div class="row">
-                <div class="col-4">
-                    <div class="container border border-light bg-light" style="margin-top: 10px; padding: 10px;">
-                        <nav class="nav flex-column">
-                            <a class="nav-link active" href="#!dashboard">Dashboard</a>
-                            <a class="nav-link" href="#!users">Users</a>
-                            <a class="nav-link" href="#!contents">Contents</a>
-                        </nav>
+                <div class="col">
+                    <div class="container" style="margin-top: 10px;">
+                        <div class="list-group">
+                            <a href="#!dashboard" class="list-group-item list-group-item-action">Dashboard</a>
+                            <a href="#!users" class="list-group-item list-group-item-action">Users</a>
+                            <a href="#!contents" class="list-group-item list-group-item-action">Contents</a>
+                        </div>
+                        
                     </div>
                 </div>
-                <div class="col-8">
-                    <div ng-view class="container border border-light bg-light" style="margin-top: 10px; padding: 10px;">
+                <div class="col-md-8">
+                    <div ng-view class="container" style="margin-top: 10px;">
                     </div>
                 </div>
             </div>
-
         </div>
     </body>
 

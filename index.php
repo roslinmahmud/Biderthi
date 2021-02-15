@@ -36,18 +36,17 @@
       <div class="col">
         
         <div ng-view class="container" style="margin-top: 10px; padding: 10px;">
-
           <div class="card">
             <h5 class="card-header bg-white">
-              Classes
+              <b>Classes</b>
             </h5>
-            <div class='card-body bg-white'>
+            <div class="card-body bg-white">
               <div class="card-deck" >
                 <?php
                   if ($result->num_rows > 0) {
                     while($data = $result->fetch_assoc()){
                 ?>
-                      <div class="card bg-info" >
+                      <div class="card bg-info" style="max-width: 208px;min-width:208px;margin: 10px">
                         <div class="card-body text-center">
                           <p class="card-text"><?php print($data['ClassName']) ?></p>
                           <a href="videos.php?classId=<?php print($data['ClassID'])?>" class="stretched-link"></a>

@@ -21,6 +21,7 @@
       include 'include/profile-validate.php';
       //<!-- Loads the get_profile_info,  -->
       require("controllers/profile-control.php");
+
       // Get profile info
       $result = get_profile_info($_SESSION['username']);
       
@@ -84,7 +85,7 @@
     </div>
 
     <!-- Loads the Footer-->
-    <?php include '../include/footer.php'?>
+    <?php include 'include/footer.php'?>
     
   </body>
 
