@@ -1,6 +1,6 @@
 <div class="card bg-white mb-3">
     <div class="card-header">
-        Upload Video
+        <b>Upload Video</b>
     </div>
     <div class="card-body">
         <form>
@@ -47,4 +47,51 @@
             <button type="submit" ng-click="UploadVideo(videoURL, videoTitle)" class="btn btn-primary">Upload</button>
         </form>
     </div>
+</div>
+
+<div class="card bg-white mb-3">
+    <div class="card-header">
+        <b>Videos</b>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Video Title</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="video in videos">
+                    <td>{{video.VideoTitle}}</td>
+                    <td>
+                        <button type="button" class="btn btn-warning btn-sm"
+                            ng-click="update(user.Name, user.Username, user.Role)">Update</button>
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#RemoveVideoModal"
+                            ng-click="InitRemoveVideo(video.VideoId, video.VideoTitle)">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="RemoveVideoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Want to remove the Video?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{ RemoveVideoTitle }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" ng-click="RemoveVideo(RemoveVideoId)" data-dismiss="modal">Remove</button>
+      </div>
+    </div>
+  </div>
 </div>

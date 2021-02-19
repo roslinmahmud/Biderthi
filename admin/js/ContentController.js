@@ -16,6 +16,7 @@
                 $scope.classes = response.data;
             })
         }
+
         $scope.GetSubjects = function () {
             $http({
                 method: "post",
@@ -27,6 +28,24 @@
             }).then(function (response) {
                 $scope.subjects = response.data;
             })
+        }
+
+        $scope.GetChapters = function(){
+            if($scope.classId && $scope.subjectId){
+                $http({
+                    method: "post",
+                    url: 'contents-data.php',
+                    data: {
+                        reason: 'getChapters',
+                        classId: $scope.classId,
+                        subjectId: $scope.subjectId
+                    },
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                }).then(function (response) {
+                    alert(response.data);
+                    $scope.chapters = response.data;
+                })
+            }
         }
 
         var IsEmpty = function isEmpty(str) {
@@ -46,24 +65,6 @@
 
         $scope.SetVideo = function (videoURL) {
             $scope.video = $sce.trustAsResourceUrl(ConvertToEmbed(videoURL));
-        }
-
-        $scope.GetChapters = function(){
-            if($scope.classId && $scope.subjectId){
-                $http({
-                    method: "post",
-                    url: 'contents-data.php',
-                    data: {
-                        reason: 'getChapters',
-                        classId: $scope.classId,
-                        subjectId: $scope.subjectId
-                    },
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-                }).then(function (response) {
-                    alert(response.data);
-                    $scope.chapters = response.data;
-                })
-            }
         }
 
         $scope.UploadVideo = function (videoURL, videoTitle, classId, subjectId, chapterId) {
@@ -102,9 +103,43 @@
                 })
             }
         }
+
+        var GetVideos = function(){
+            $http({
+                method: "post",
+                url: 'contents-data.php',
+                data: {
+                    reason: 'getVideos'
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }).then(function (response) {
+                $scope.videos = response.data;
+            })
+        }
+
+        $scope.InitRemoveVideo = function(VideoId, VideoTitle){
+            $scope.RemoveVideoTitle = VideoTitle;
+            $scope.RemoveVideoId = VideoId;
+        }
+
+        $scope.RemoveVideo = function(VideoId){
+            $http({
+                method: "post",
+                url: 'contents-data.php',
+                data:{
+                    reason: 'removeVideo',
+                    VideoId: VideoId
+                },
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }).then(function(response){
+                GetVideos();
+                alert(response.data);
+            })
+        }
         
         $scope.GetClasses();
         $scope.GetSubjects();
+        GetVideos();
 
     })
 
