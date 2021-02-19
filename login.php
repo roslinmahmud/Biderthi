@@ -20,50 +20,43 @@
     include 'include/login-validate.php'
   ?>
 
-  <div class="container" >
-    
-    <div class="container border border-light" style="width: 500px; margin: 10px;">
-          <h3>Sign In</h3>
-          <hr>
-      <form method="POST">
-            <?php
-              print $authenticationError;
-            ?>
-            <div class="form-group">
-              <label for="username">Username</label>
-              <input type="text" class="form-control text-lowercase <?php print $usernameValidity;?>" value="<?php print $username?>" name="username" id="username" placeholder="username" aria-describedby="usernameText" required>
-              <small id="nameText" class="invalid-feedback"><?php print $usernameErr;?></small>
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" class="form-control <?php print $passwordValidity;?>" value="<?php print $password?>" name="password" id="password" placeholder="********" aria-describedby="passwordText" required>
-              <small id="nameText" class="invalid-feedback"><?php print $passwordErr;?></small>
-            </div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary">Login</button>
-            </div>
-            <div class="form-group">
-              <span>Don't have an account? <a href="register.php">Register</a></span>
-            </div>
+  <div class="container" style="margin: 10px; padding: 10px;">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <b>Sign In</b>
           </div>
-      </form>
-      
+          <div class="card-body">
+            <form method="POST">
+              <?php
+                print $authenticationError;
+              ?>
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control text-lowercase <?php print $usernameValidity;?>" value="<?php print $username?>" name="username" id="username" placeholder="username" aria-describedby="usernameText" required>
+                <small id="nameText" class="invalid-feedback"><?php print $usernameErr;?></small>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control <?php print $passwordValidity;?>" value="<?php print $password?>" name="password" id="password" placeholder="********" aria-describedby="passwordText" required>
+                <small id="nameText" class="invalid-feedback"><?php print $passwordErr;?></small>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary">Login</button>
+              </div>
+              <div class="form-group">
+                <span>Don't have an account? <a href="register.php">Register</a></span>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
+    </div>
 
-  <!-- Loads the Footer-->
-  <?php include '../include/footer.php'?>
+    <!-- Loads the Footer-->
+    <?php include 'include/footer.php'?>
+  </div>
 </body>
-
-
-<?php
-
-    
-
-
-
-
-
-
-?>
 
 </html>

@@ -1,6 +1,4 @@
-<h3>Contents</h3>
-<hr>
-<div class="card bg-light mb-3">
+<div class="card bg-white mb-3">
     <div class="card-header">
         Upload Video
     </div>
