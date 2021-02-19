@@ -26,6 +26,30 @@
             echo("Video Upload failed");
         }
     }
+    else if($request->reason == 'getVideos')
+    {
+        $query = "select * from Videos";
+        $result = executeQuery($query);
+
+        $data = "";
+        while($video = $result->fetch_assoc()){
+            if($data != ""){$data.=",";}
+            $data.='{"VideoId":"'.$video["VideoID"].'",';
+            $data.='"VideoTitle":"'.$video["VideoTitle"].'"}';
+        }
+        echo('['.$data.']');
+    }
+    else if($request->reason == 'removeVideo'){
+        // Remove video
+        $VideoId = $request->VideoId;
+        $query = "DELETE FROM Videos WHERE VideoId='$VideoId';";
+        if(executeNonQuery($query)){
+            echo("Successfully Removed Video");
+        }
+        else{
+            echo("Remove Video failed");
+        }
+    }
     else if($request->reason == 'getChapters')
     {
         $subjectId = $request->subjectId;

@@ -23,6 +23,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-route.min.js"></script>
         <script src="js/app.js"></script>
+        <script src="js/DashboardController.js"></script>
         <script src="js/UserController.js"></script>
         <script src="js/ContentController.js"></script>
     </head>
@@ -51,6 +52,6 @@
     </body>
 
     <!-- Loads the Footer-->
-    <?php include 'include/footer.php'?>
+    <?php include '../include/footer.php'?>
 
 </html>

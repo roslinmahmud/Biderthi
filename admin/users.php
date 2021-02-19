@@ -1,6 +1,6 @@
 <div class="card bg-white mb-3">
     <div class="card-header">
-        Users
+        <b>Users</b>
     </div>
     <div class="card-body">
         <table class="table table-hover">
