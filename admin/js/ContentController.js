@@ -30,19 +30,18 @@
             })
         }
 
-        $scope.GetChapters = function(){
-            if($scope.classId && $scope.subjectId){
+        $scope.GetChapters = function(ClassID, SubjectID){
+            if(ClassID && SubjectID){
                 $http({
                     method: "post",
                     url: 'contents-data.php',
                     data: {
                         reason: 'getChapters',
-                        classId: $scope.classId,
-                        subjectId: $scope.subjectId
+                        classId: ClassID,
+                        subjectId: SubjectID
                     },
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                 }).then(function (response) {
-                    alert(response.data);
                     $scope.chapters = response.data;
                 })
             }
@@ -100,6 +99,7 @@
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                 }).then(function (response) {
                     alert(response.data);
+                    GetVideos();
                 })
             }
         }
@@ -132,9 +132,74 @@
                 },
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             }).then(function(response){
-                GetVideos();
                 alert(response.data);
+                GetVideos();
             })
+        }
+
+        $scope.AddClass = function(ClassName){
+            if(!IsEmpty(ClassName)){
+                $http({
+                    method: "post",
+                    url: 'contents-data.php',
+                    data: {
+                        reason: 'AddClass',
+                        ClassName: ClassName
+                    },
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                }).then(function (response) {
+                    alert(response.data);
+                    $scope.GetClasses();
+                })
+            }
+            else{
+                alert("Enter a Class name to Add!");
+            }
+        }
+
+        $scope.AddSubject = function(SubjectName){
+            if(!IsEmpty(SubjectName)){
+                $http({
+                    method: "post",
+                    url: 'contents-data.php',
+                    data: {
+                        reason: 'AddSubject',
+                        SubjectName: SubjectName
+                    },
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                }).then(function (response) {
+                    alert(response.data);
+                    $scope.GetSubjects();
+                })
+            }
+            else{
+                alert("Enter a Subject name to Add!");
+            }
+        }
+
+        $scope.AddChapter = function(ChapterName, ClassID, SubjectID){
+            if(IsEmpty(ClassID) || IsEmpty(SubjectID)){
+                alert("Select Class/Subject name to AddChapter!");
+            }
+            else if(!IsEmpty(ChapterName)){
+                $http({
+                    method: "post",
+                    url: 'contents-data.php',
+                    data: {
+                        reason: 'AddChapter',
+                        ChapterName: ChapterName,
+                        ClassID: ClassID,
+                        SubjectID: SubjectID
+                    },
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                }).then(function (response) {
+                    alert(response.data);
+                    $scope.GetChapters(ClassID, SubjectID);
+                })
+            }
+            else{
+                alert("Enter a Chapter name to Add!");
+            }
         }
         
         $scope.GetClasses();

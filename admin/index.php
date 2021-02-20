@@ -48,10 +48,10 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Loads the Footer-->
+            <?php include '../include/footer.php'?>
         </div>
     </body>
-
-    <!-- Loads the Footer-->
-    <?php include '../include/footer.php'?>
 
 </html>
