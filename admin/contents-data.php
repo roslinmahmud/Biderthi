@@ -10,7 +10,6 @@
     $request = json_decode($postdata);
 
     if($request->reason == 'uploadVideo'){
-        // Upload video
         $videoURL = $request->videoId;
         $videoTitle = $request->videoTitle;
         $subjectId = $request->subjectId;
@@ -31,16 +30,13 @@
         $query = "select * from Videos";
         $result = executeQuery($query);
 
-        $data = "";
-        while($video = $result->fetch_assoc()){
-            if($data != ""){$data.=",";}
-            $data.='{"VideoId":"'.$video["VideoID"].'",';
-            $data.='"VideoTitle":"'.$video["VideoTitle"].'"}';
+        $rows = array();
+        while($r = $result->fetch_assoc()){
+            $rows[] = $r;
         }
-        echo('['.$data.']');
+        print json_encode($rows);
     }
     else if($request->reason == 'removeVideo'){
-        // Remove video
         $VideoId = $request->VideoId;
         $query = "DELETE FROM Videos WHERE VideoId='$VideoId';";
         if(executeNonQuery($query)){
@@ -58,52 +54,71 @@
         $query = "select * from Chapters Where ClassID='".$classId."' and SubjectID='".$subjectId."'";
         $result = executeQuery($query);
 
-        $data = "";
-        while($video = $result->fetch_assoc()){
-            if($data != ""){$data.=",";}
-            $data.='{"ChapterID":"'.$video["ChapterID"].'",';
-            $data.='"ChapterName":"'.$video["ChapterName"].'"}';
+        $rows = array();
+        while($r = $result->fetch_assoc()){
+            $rows[] = $r;
         }
-        echo('['.$data.']');
+        print json_encode($rows);
     }
     else if($request->reason == 'getClasses')
     {
         $query = "select * from Classes";
         $result = executeQuery($query);
 
-        $data = "";
-        while($video = $result->fetch_assoc()){
-            if($data != ""){$data.=",";}
-            $data.='{"ClassID":"'.$video["ClassID"].'",';
-            $data.='"ClassName":"'.$video["ClassName"].'"}';
+        $rows = array();
+        while($r = $result->fetch_assoc()){
+            $rows[] = $r;
         }
-        echo('['.$data.']');
+        print json_encode($rows);
     }
     else if($request->reason == 'getSubjects')
     {
         $query = "select * from Subjects";
         $result = executeQuery($query);
 
-        $data = "";
-        while($video = $result->fetch_assoc()){
-            if($data != ""){$data.=",";}
-            $data.='{"SubjectID":"'.$video["SubjectID"].'",';
-            $data.='"SubjectName":"'.$video["SubjectName"].'"}';
+        $rows = array();
+        while($r = $result->fetch_assoc()){
+            $rows[] = $r;
         }
-        echo('['.$data.']');
+        print json_encode($rows);
     }
-    else{
-        // Retrieve videos
-        $query = "select * from Videos";
-        $result = executeQuery($query);
+    else if($request->reason == 'AddClass')
+    {
+        $ClassName = $request->ClassName;
+        $query = "INSERT INTO Classes (ClassName) VALUES ('$ClassName');";
 
-        $data = "";
-        while($video = $result->fetch_assoc()){
-            if($data != ""){$data.=",";}
-            $data.='{"VideoId":"'.$video["VideoURL"].'",';
-            $data.='"VideoTitle":"'.$video["VideoTitle"].'"}';
+        if(executeQuery($query)){
+            print "Successfully added the class";
         }
-        echo('['.$data.']');
+        else{
+            print "Class added failed!";
+        }
+    }
+    else if($request->reason == 'AddSubject')
+    {
+        $SubjectName = $request->SubjectName;
+        $query = "INSERT INTO Subjects (SubjectName) VALUES ('$SubjectName');";
+
+        if(executeQuery($query)){
+            print "Successfully added the Subject";
+        }
+        else{
+            print "Subject added failed!";
+        }
+    }
+    else if($request->reason == 'AddChapter')
+    {
+        $ChapterName = $request->ChapterName;
+        $ClassID = $request->ClassID;
+        $SubjectID = $request->SubjectID;
+        $query = "INSERT INTO Chapters (ChapterName, ClassID, SubjectID) VALUES ('$ChapterName', '$ClassID', '$SubjectID');";
+
+        if(executeQuery($query)){
+            print "Successfully added the Chapter";
+        }
+        else{
+            print "Chapter added failed!";
+        }
     }
     
 ?>
