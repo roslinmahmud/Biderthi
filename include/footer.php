@@ -6,20 +6,10 @@
         <div class="col-6 col-md">
             <h5>Address</h5>
             <address>
-                <strong>Biderthi</strong><br>
                 Bhojeshwar<br>
                 Naria, Shariatpur<br>
-                <abbr title="Phone"></abbr> (123) 456-7890
+                <abbr title="Phone"></abbr> 01763-574674
             </address>
-        </div>
-        <div class="col-6 col-md">
-            <h5>Resources</h5>
-            <ul class="list-unstyled text-small">
-                <li><a class="text-muted" href="#">Resource</a></li>
-                <li><a class="text-muted" href="#">Resource name</a></li>
-                <li><a class="text-muted" href="#">Another resource</a></li>
-                <li><a class="text-muted" href="#">Final resource</a></li>
-            </ul>
         </div>
         <div class="col-6 col-md">
             <h5>About</h5>

@@ -5,7 +5,7 @@
 ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-info">
 
-  <a href="index.php" class="navbar-brand text-monospace font-weight-bold"><img src="apple-touch-icon.png" width="30" height="30"> Biderthi</a>
+  <a href="index.php" class="navbar-brand text-monospace font-weight-bold"><img src="img/apple-touch-icon.png" width="30" height="30"> Biderthi</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

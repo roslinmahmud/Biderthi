@@ -31,61 +31,70 @@
 
   <div id="video" class="container" ng-app='app' ng-controller='MainController'>
     <div class="row">
-      <div class="col-8">
-        <div ng-view class="container border border-light bg-light" style="margin-top: 10px; padding: 10px;">
-          <div class="card-deck">
-      <?php
-        if(isset($_GET['classId']) && !isset($_GET['subjectId'])){
-          if($result->num_rows > 0) {
-            while($data = $result->fetch_assoc()){
-      ?>
-              <div class="card bg-info">
-              <div class="card-body text-center">
-                  <p class="card-text"><?php print($data['SubjectName']) ?></p>
-                  <a href="videos.php?subjectId=<?php print($data['SubjectID'])?>&classId=<?php print($_GET['classId']) ?>" class="stretched-link"></a>
-              </div>
-              </div>
-      <?php
+      <div class="col">
+
+        <div ng-view class="container" style="margin-top: 10px; padding: 10px;">
+          <div class="card">
+            <div class="card-body bg-white">
+              <div class="card-deck">
+          <?php
+            if(isset($_GET['classId']) && !isset($_GET['subjectId'])){
+              if($result->num_rows > 0) {
+                while($data = $result->fetch_assoc()){
+          ?>
+                  <div class="card bg-info" style="max-width: 208px;min-width:208px;margin: 10px">
+                  <div class="card-body text-center">
+                      <p class="card-text"><?php print($data['SubjectName']) ?></p>
+                      <a href="videos.php?subjectId=<?php print($data['SubjectID'])?>&classId=<?php print($_GET['classId']) ?>" class="stretched-link"></a>
+                  </div>
+                  </div>
+          <?php
+                }
+              }
             }
-          }
-        }
-        else if(isset($_GET['classId']) && isset($_GET['subjectId']) && !isset($_GET['chapterId'])){
-					$result = getChapters($_GET['classId'], $_GET['subjectId']);
-					if($result->num_rows > 0) {
-            while($data = $result->fetch_assoc()){
-      ?>
-              <div class="card bg-info">
-              <div class="card-body text-center">
-                  <p class="card-text"><?php print($data['ChapterName']) ?></p>
-                  <a href="videos.php?chapterId=<?php print($data['ChapterID'])?>&classId=<?php print($_GET['classId']) ?>&subjectId=<?php print($_GET['subjectId']) ?>" class="stretched-link"></a>
-              </div>
-              </div>
-      <?php
+            else if(isset($_GET['classId']) && isset($_GET['subjectId']) && !isset($_GET['chapterId'])){
+              $result = getChapters($_GET['classId'], $_GET['subjectId']);
+              if($result->num_rows > 0) {
+                while($data = $result->fetch_assoc()){
+          ?>
+                  <div class="card bg-info" style="max-width: 208px;min-width:208px;margin: 10px">
+                  <div class="card-body text-center">
+                      <p class="card-text"><?php print($data['ChapterName']) ?></p>
+                      <a href="videos.php?chapterId=<?php print($data['ChapterID'])?>&classId=<?php print($_GET['classId']) ?>&subjectId=<?php print($_GET['subjectId']) ?>" class="stretched-link"></a>
+                  </div>
+                  </div>
+          <?php
+                }
+              }
+              
             }
-          }
-					
-        }
-      ?>
-          </div>
-          <div class="form-group">
-            <div ng-if="video" class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" ng-src="{{video}}"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-              </iframe>
+          ?>
+              </div>
             </div>
-            <h5>{{videoTitle}}</h5>
+
+            <div class="card-img-top">
+              <div ng-if="video" class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" ng-src="{{video}}"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen>
+                </iframe>
+              </div>
+              <div class="card-footer text-muted">
+                {{videoTitle}}
+              </div>
+            </div>
           </div>
+          
         </div>
       </div>
-      <div class="col-4">
-        <div class="container border border-light bg-light" style="margin-top: 10px; padding: 10px;">
-          <nav class="nav flex-column">
-
-            <ul class="list-group" ng-repeat="video in videos">
+      <div class="col-lg-4">
+        <div ng-view class="container" style="margin-top: 10px; padding: 10px;">
+          <div class="card">
+            <ul class="list-group list-group-item-action" ng-repeat="video in videos">
               <li class="list-group-item"><a href="" ng-click="SetVideo(video.VideoId, video.VideoTitle)">{{video.VideoTitle}}</a></li>
             </ul>
-          </nav>
+            
+          </div>
         </div>
       </div>
     </div>
