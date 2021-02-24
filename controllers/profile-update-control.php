@@ -5,7 +5,7 @@
     function update($id, $name, $email, $username, $number, $address, $password)
     {
         
-        $query="UPDATE users SET name='$name', email='$email', username='$username', number='$number', address='$address', password='$password' 
+        $query="UPDATE Users SET Name='$name', Email='$email', Username='$username', Number='$number', Address='$address', Password='$password' 
         where id=$id";
         return executeNonQuery($query);
     }

@@ -48,7 +48,7 @@
                 ?>
                       <div class="card bg-info" style="max-width: 208px;min-width:208px;margin: 10px">
                         <div class="card-body text-center">
-                          <p class="card-text"><?php print($data['ClassName']) ?></p>
+                          <h5 class="card-text"><?php print($data['ClassName']) ?></h5>
                           <a href="videos.php?classId=<?php print($data['ClassID'])?>" class="stretched-link"></a>
                         </div>
                       </div>
@@ -64,6 +64,10 @@
       </div>
       <div class="col-lg-4">
         <!-- SET a poster here -->
+        <div class="container" style="margin-top: 10px; padding: 10px;">
+          <img src="img/ad.jpg" class="img-fluid" alt="Responsive image">
+        </div>
+        
       </div>
     </div>
 

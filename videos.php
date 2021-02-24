@@ -44,7 +44,7 @@
           ?>
                   <div class="card bg-info" style="max-width: 208px;min-width:208px;margin: 10px">
                   <div class="card-body text-center">
-                      <p class="card-text"><?php print($data['SubjectName']) ?></p>
+                      <h5 class="card-text"><?php print($data['SubjectName']) ?></h5>
                       <a href="videos.php?subjectId=<?php print($data['SubjectID'])?>&classId=<?php print($_GET['classId']) ?>" class="stretched-link"></a>
                   </div>
                   </div>
@@ -59,7 +59,7 @@
           ?>
                   <div class="card bg-info" style="max-width: 208px;min-width:208px;margin: 10px">
                   <div class="card-body text-center">
-                      <p class="card-text"><?php print($data['ChapterName']) ?></p>
+                      <h5 class="card-text"><?php print($data['ChapterName']) ?></h5>
                       <a href="videos.php?chapterId=<?php print($data['ChapterID'])?>&classId=<?php print($_GET['classId']) ?>&subjectId=<?php print($_GET['subjectId']) ?>" class="stretched-link"></a>
                   </div>
                   </div>
